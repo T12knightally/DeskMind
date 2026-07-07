@@ -1,0 +1,48 @@
+=================================================================
+  TFT_eSPI 库配置指南 — GC9A01 圆形屏幕 (ESP32-S3)
+=================================================================
+
+请在 Arduino IDE 中安装 TFT_eSPI 库 (作者: Bodmer):
+  工具 → 管理库 → 搜索 "TFT_eSPI" → 安装
+
+安装后, 按以下步骤配置:
+
+1. 找到 TFT_eSPI 库文件夹:
+   通常位于: Documents\Arduino\libraries\TFT_eSPI\
+
+2. 编辑 User_Setup_Select.h:
+   - 注释掉所有已启用的 #include 行
+   - 确保没有启用任何预设配置文件
+   - 保存
+
+3. 编辑 User_Setup.h, 替换全部内容为:
+
+-----------------------------------------------------------------
+// GC9A01 圆形屏幕 240x240 配置
+#define GC9A01_DRIVER
+
+#define TFT_WIDTH  240
+#define TFT_HEIGHT 240
+
+// ESP32-S3 SPI 引脚
+#define TFT_MISO -1
+#define TFT_MOSI 8
+#define TFT_SCLK 18
+#define TFT_CS   5
+#define TFT_DC   2
+#define TFT_RST  4
+
+// SPI 频率
+#define SPI_FREQUENCY       40000000
+#define SPI_READ_FREQUENCY  20000000
+#define SPI_TOUCH_FREQUENCY 2500000
+
+// 字体 (可选, 如需中文字体后续配置)
+#define SMOOTH_FONT
+-----------------------------------------------------------------
+
+4. 保存 User_Setup.h, 重启 Arduino IDE
+
+5. 验证: 选择 "ESP32S3 Dev Module", 编译 smart_health.ino
+
+=================================================================
